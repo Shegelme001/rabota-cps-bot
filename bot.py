@@ -207,7 +207,40 @@ async def button_handler(
         parse_mode="HTML",
         reply_markup=InlineKeyboardMarkup(keyboard)
     )
+elif query.data == "operator_1c":
 
+    keyboard = [
+        [
+            InlineKeyboardButton(
+                "🔗 Открыть вакансию",
+                url="https://chekhov.hh.ru/vacancies/operator-1s"
+            )
+        ],
+        [
+            InlineKeyboardButton(
+                "⬅️ Назад к направлениям",
+                callback_data="city_chekhov"
+            )
+        ],
+        [
+            InlineKeyboardButton(
+                "🏠 Главное меню",
+                callback_data="back"
+            )
+        ],
+    ]
+
+    await query.edit_message_text(
+        "🖥 <b>Оператор 1С — Чехов</b>\n\n"
+        "🔎 Актуальные вакансии по направлению "
+        "«Оператор 1С» в Чехове.\n\n"
+        "📍 Чехов\n"
+        "💼 Оператор 1С / специалист 1С\n\n"
+        "Нажмите кнопку ниже, чтобы посмотреть "
+        "актуальные предложения и откликнуться.",
+        parse_mode="HTML",
+        reply_markup=InlineKeyboardMarkup(keyboard)
+    )
     # -------------------------
     # ПОДОЛЬСК
     # -------------------------
