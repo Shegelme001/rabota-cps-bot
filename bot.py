@@ -41,7 +41,35 @@ def run_web():
     port = int(os.environ.get("PORT", 10000))
     app.run(host="0.0.0.0", port=port)
 
+# =========================
+# ПОИСК ВАКАНСИЙ HH
+# =========================
 
+HH_API = "https://api.hh.ru"
+
+
+def get_chekhov_vacancies():
+    headers = {
+        "User-Agent": "RabotaCPSBot/1.0 (Telegram vacancy bot)"
+    }
+
+    params = {
+        "text": "оператор 1С",
+        "area": 1,
+        "per_page": 10,
+        "page": 0,
+    }
+
+    response = requests.get(
+        f"{HH_API}/vacancies",
+        params=params,
+        headers=headers,
+        timeout=15
+    )
+
+    response.raise_for_status()
+
+    return response.json().get("items", [])
 # =========================
 # ГЛАВНОЕ МЕНЮ
 # =========================
