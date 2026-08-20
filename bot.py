@@ -174,16 +174,39 @@ async def button_handler(
 
     elif query.data == "city_chekhov":
 
-        await query.edit_message_text(
-            "📍 <b>Чехов</b>\n\n"
-            "Пока база вакансий пуста.\n\n"
-            "Следующим этапом подключим "
-            "автоматический поиск вакансий "
-            "и будем показывать здесь "
-            "свежие предложения.",
-            parse_mode="HTML",
-            reply_markup=main_keyboard()
-        )
+    keyboard = [
+        [
+            InlineKeyboardButton(
+                "🖥 Оператор 1С",
+                callback_data="operator_1c"
+            )
+        ],
+        [
+            InlineKeyboardButton(
+                "📄 Документооборот",
+                callback_data="document_flow"
+            )
+        ],
+        [
+            InlineKeyboardButton(
+                "🖥 Оператор ПК",
+                callback_data="operator_pc"
+            )
+        ],
+        [
+            InlineKeyboardButton(
+                "⬅️ Назад",
+                callback_data="search"
+            )
+        ],
+    ]
+
+    await query.edit_message_text(
+        "📍 <b>Вакансии в Чехове</b>\n\n"
+        "Выберите направление:",
+        parse_mode="HTML",
+        reply_markup=InlineKeyboardMarkup(keyboard)
+    )
 
     # -------------------------
     # ПОДОЛЬСК
